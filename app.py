@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, redirect, url_for, session
 
 # Initialize the Flask application
 app = Flask(__name__)
+app.secret_key = 'pass-seed'
+
 
 # Define the route for the home page (the fake bank front)
 @app.route('/')
@@ -24,22 +26,31 @@ def login():
     # Redirect back to home or a 'dashboard' after 'login'
     return redirect(url_for('index'))
 
-@app.route('/hiddenadmin')
+#admin page
+@app.route('/peacaboo')
 def hidden_admin():
-    return render_template('hiddenadmin.html')
+    return render_template('admin.html')
 
-@app.route('/employee-login', methods=['GET', 'POST'])
-def employee_login():
-    error_message = None
+# admin login
+@app.route('/UIFIioidfoifgogdshfghfhgfghrshtrst', methods=['GET', 'POST'])
+def employeelogin():
+    errormessage = None
     if request.method == 'POST':
         empid = request.form.get('empid')
         emppassword = request.form.get('emppassword')
-        if empid == 'admin' and emppassword == 'admin123':
-            session['employee_logged_in'] = True
-            return redirect(url_for('hidden_admin'))  # Or wherever you want to send successful logins
+        if empid == "john" and emppassword == "SPONGEBOB":
+            session['employeeloggedin'] = True
+            return redirect(url_for('panel'))  # <-- Redirect to "panel"
         else:
-            error_message = "Invalid employee credentials."
-    return render_template('employee_login.html', error=error_message)
+            errormessage = "Invalid employee credentials."
+    return render_template('employee_login.html', error=errormessage)
+
+@app.route('/panel')
+def panel():
+    if not session.get('employeeloggedin'):
+        return redirect(url_for('index'))
+    return render_template('panel.html')
+
 
 # Run the application directly
 if __name__ == '__main__':
