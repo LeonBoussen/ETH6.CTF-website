@@ -4,42 +4,90 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SecureBank - Online Banking</title>
-    <!-- Link to the static CSS file served by Flask -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="container">
             <div class="logo">SecureBank</div>
             <ul class="nav-links">
-                <li><a href="#">Personal login</a></li>
-                <li><a href="#">Business login</a></li>
+                <li><a href="#">Personal</a></li>
+                <li><a href="#">Business</a></li>
                 <li><a href="#">Customer Service</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Main Hero Section with Login Box -->
+    <!-- Hero section: branding, login, call-to-action -->
     <section class="hero">
         <div class="container hero-content">
-            
             <div class="marketing-text">
-                <h1>Banking made simple.</h1>
-                <p>Experience secure, fast, and reliable banking at your fingertips. Join over 5 million satisfied customers today.</p>
+                <h1>Welcome to SecureBank</h1>
+                <p>Your trusted partner for safe, smart, and simple banking.<br>
+                    Discover why 5M+ customers bank with confidence.</p>
                 <button class="btn-secondary">Open an Account</button>
+            </div>
+            <div class="login-card">
+                <h2>Customer Login</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" autocomplete="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" autocomplete="current-password">
+                    </div>
+                    <div class="form-options">
+                        <a href="#">Forgot password?</a>
+                    </div>
+                    <button type="submit" class="btn-primary">Log In</button>
+                </form>
+                <div class="security-notice">
+                    <span>🔒</span> Secure encrypted login
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Simple Footer -->
+    <!-- Featured banking products -->
+    <section class="features">
+        <div class="container features-grid">
+            <div class="feature-card">
+                <span class="feature-icon">🏦</span>
+                <h3>Personal Banking</h3>
+                <p>Easy checking & savings accounts with zero fees.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">💼</span>
+                <h3>Business Solutions</h3>
+                <p>Powerful tools and support for companies of every size.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">📱</span>
+                <h3>Mobile App</h3>
+                <p>Bank anytime, anywhere with our trusted mobile app.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Highlight security & trust -->
+    <section class="trust-signals">
+        <div class="container trust-row">
+            <div class="badge">FDIC Insured</div>
+            <div class="badge">24/7 Support</div>
+            <div class="badge">5M+ Satisfied Customers</div>
+            <div class="badge">Advanced Security</div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
         <div class="container">
             <p>&copy; 2025 SecureBank Global. All rights reserved.</p>
-            <p>FDIC Insured. Equal Housing Lender.</p>
+            <p>FDIC Insured. Equal Housing Lender. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">Contact Us</a></p>
         </div>
     </footer>
-
 </body>
 </html>
