@@ -262,3 +262,118 @@ footer a {
 footer a:hover {
     text-decoration: underline;
 }
+/* Admin Panel Styles */
+.admin-panel {
+    padding: 62px 0;
+}
+.admin-panel .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.admin-panel h1 {
+    text-align: center;
+    font-size: 2.2rem;
+    color: #004080;
+    margin-bottom: 32px;
+}
+.admin-controls {
+    display: flex;
+    gap: 36px;
+    justify-content: center;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+.admin-controls .card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0,64,128,0.14);
+    padding: 42px 24px;
+    min-width: 240px;
+    max-width: 300px;
+    text-align: center;
+}
+.admin-controls h2 {
+    color: #004080;
+    margin-bottom: 14px;
+    font-size: 1.19rem;
+}
+.admin-controls p {
+    color: #555;
+    font-size: 1rem;
+    margin-bottom: 18px;
+}
+
+/* optional security notice color adjustment */
+.admin-panel .security-notice {
+    color: #d90429;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 32px;
+}
+/* Employee Login Styles */
+.employee-login-panel {
+    padding: 60px 0;
+}
+.employee-login-panel .container {
+    max-width: 400px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 22px rgba(0,64,128,0.09);
+    padding: 38px 28px;
+}
+.employee-login-panel h1 {
+    text-align: center;
+    font-size: 2rem;
+    color: #004080;
+    margin-bottom: 28px;
+}
+.employee-login-form .form-group {
+    margin-bottom: 19px;
+}
+.employee-login-form label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 1rem;
+    color: #444;
+}
+.employee-login-form input[type="text"], .employee-login-form input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1.07rem;
+    background: #f8fafd;
+}
+.employee-login-form button.btn-primary {
+    width: 100%;
+    padding: 12px;
+    background-color: #0066cc;
+    border: none;
+    color: white;
+    font-size: 1.13rem;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 6px;
+    transition: background-color 0.2s;
+}
+.employee-login-form button.btn-primary:hover {
+    background-color: #0052a3;
+}
+.employee-login-panel .security-notice {
+    color: #28a745;
+    font-weight: 500;
+    text-align: center;
+    margin-top: 24px;
+}
+.error-message {
+    background: #ffd6d6;
+    color: #c90000;
+    border: 1px solid #ff1a1a;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    padding: 12px;
+    text-align: center;
+    font-weight: 500;
+}

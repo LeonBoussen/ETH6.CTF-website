@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureBank - Hidden Admin Panel</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">SecureBank</div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="admin-panel">
+        <div class="container">
+            <h1>👑 Admin Panel</h1>
+            <div class="admin-controls">
+                <div class="card">
+                    <h2>Employee Login</h2>
+                    <p>Secure portal for authorized staff only.</p>
+                    <a href="{{ url_for('employee_login') }}" class="btn-primary">Employee Login</a>
+                </div>
+            </div>
+            <p class="security-notice"><span>🔒</span> Restricted access – authorized admin only.</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 SecureBank Global. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
