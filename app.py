@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 
 # Initialize the Flask application
 app = Flask(__name__)
@@ -23,6 +23,23 @@ def login():
     
     # Redirect back to home or a 'dashboard' after 'login'
     return redirect(url_for('index'))
+
+@app.route('/hiddenadmin')
+def hidden_admin():
+    return render_template('hiddenadmin.html')
+
+@app.route('/employee-login', methods=['GET', 'POST'])
+def employee_login():
+    error_message = None
+    if request.method == 'POST':
+        empid = request.form.get('empid')
+        emppassword = request.form.get('emppassword')
+        if empid == 'admin' and emppassword == 'admin123':
+            session['employee_logged_in'] = True
+            return redirect(url_for('hidden_admin'))  # Or wherever you want to send successful logins
+        else:
+            error_message = "Invalid employee credentials."
+    return render_template('employee_login.html', error=error_message)
 
 # Run the application directly
 if __name__ == '__main__':

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Login - SecureBank</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">SecureBank</div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/hiddenadmin">Admin Panel</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="employee-login-panel">
+        <div class="container">
+            <h1>Employee Login</h1>
+            {% if error %}
+                <div class="error-message">{{ error }}</div>
+            {% endif %}
+            <form class="employee-login-form" method="post" autocomplete="off">
+                <div class="form-group">
+                    <label for="empid">Employee ID</label>
+                    <input type="text" name="empid" id="empid" required>
+                </div>
+                <div class="form-group">
+                    <label for="emppassword">Password</label>
+                    <input type="password" name="emppassword" id="emppassword" required>
+                </div>
+                <button type="submit" class="btn-primary">Login</button>
+            </form>
+            <p class="security-notice"><span>🔒</span> Secure staff access only.</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 SecureBank Global. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
