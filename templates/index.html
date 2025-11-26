@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureBank - Online Banking</title>
+    <!-- Link to the static CSS file served by Flask -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">SecureBank</div>
+            <ul class="nav-links">
+                <li><a href="#">Personal login</a></li>
+                <li><a href="#">Business login</a></li>
+                <li><a href="#">Customer Service</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Hero Section with Login Box -->
+    <section class="hero">
+        <div class="container hero-content">
+            
+            <div class="marketing-text">
+                <h1>Banking made simple.</h1>
+                <p>Experience secure, fast, and reliable banking at your fingertips. Join over 5 million satisfied customers today.</p>
+                <button class="btn-secondary">Open an Account</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simple Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 SecureBank Global. All rights reserved.</p>
+            <p>FDIC Insured. Equal Housing Lender.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

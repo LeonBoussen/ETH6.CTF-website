@@ -1,0 +1,174 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f4f6f8;
+    color: #333;
+}
+
+/* Navigation Bar */
+.navbar {
+    background-color: #004080; /* Corporate Navy Blue */
+    color: white;
+    padding: 15px 0;
+}
+
+.navbar .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.nav-links a:hover {
+    color: white;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, #004080 0%, #0066cc 100%);
+    padding: 80px 0;
+    min-height: 80vh; /* Covers most of the screen */
+    display: flex;
+    align-items: center;
+}
+
+.hero-content {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.marketing-text {
+    color: white;
+    max-width: 500px;
+    margin-bottom: 40px;
+}
+
+.marketing-text h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.btn-secondary {
+    padding: 12px 24px;
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 20px;
+}
+
+.btn-secondary:hover {
+    background-color: white;
+    color: #004080;
+}
+
+/* Login Card */
+.login-card {
+    background: white;
+    padding: 40px;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.login-card h2 {
+    margin-bottom: 20px;
+    color: #004080;
+    font-size: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+}
+
+.form-options a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 12px;
+    background-color: #0066cc;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #0052a3;
+}
+
+.security-notice {
+    margin-top: 20px;
+    text-align: center;
+    color: #28a745; /* Green for security */
+}
+
+/* Footer */
+footer {
+    background-color: #eee;
+    padding: 20px 0;
+    text-align: center;
+    color: #777;
+    font-size: 0.8rem;
+}
