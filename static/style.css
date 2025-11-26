@@ -1,23 +1,22 @@
-/* General Reset */
+/* General Reset and Base Styling */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-
 body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f4f6f8;
     color: #333;
+    min-height: 100vh;
 }
 
 /* Navigation Bar */
 .navbar {
-    background-color: #004080; /* Corporate Navy Blue */
+    background-color: #004080;
     color: white;
     padding: 15px 0;
 }
-
 .navbar .container {
     width: 90%;
     max-width: 1200px;
@@ -26,34 +25,31 @@ body {
     justify-content: space-between;
     align-items: center;
 }
-
 .logo {
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     font-weight: bold;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
 }
-
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 20px;
+    gap: 28px;
 }
-
 .nav-links a {
     color: #ccc;
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 1rem;
+    transition: color 0.2s;
 }
-
 .nav-links a:hover {
-    color: white;
+    color: #fff;
 }
 
-/* Hero Section */
+/* Hero Section with Login */
 .hero {
     background: linear-gradient(135deg, #004080 0%, #0066cc 100%);
-    padding: 80px 0;
-    min-height: 80vh; /* Covers most of the screen */
+    padding: 72px 0 60px 0;
+    min-height: 70vh;
     display: flex;
     align-items: center;
 }
@@ -64,111 +60,205 @@ body {
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     flex-wrap: wrap;
+    gap: 48px;
 }
-
 .marketing-text {
     color: white;
     max-width: 500px;
     margin-bottom: 40px;
 }
-
 .marketing-text h1 {
     font-size: 3rem;
     margin-bottom: 20px;
+    font-weight: 700;
 }
-
+.marketing-text p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
 .btn-secondary {
-    padding: 12px 24px;
+    padding: 12px 28px;
     background-color: transparent;
     border: 2px solid white;
     color: white;
     font-weight: bold;
     cursor: pointer;
     border-radius: 4px;
-    margin-top: 20px;
+    margin-top: 28px;
+    font-size: 1.1rem;
+    transition: background 0.2s, color 0.2s;
 }
-
 .btn-secondary:hover {
     background-color: white;
     color: #004080;
 }
 
-/* Login Card */
 .login-card {
     background: white;
-    padding: 40px;
+    padding: 40px 32px;
     width: 100%;
-    max-width: 400px;
-    border-radius: 8px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    max-width: 370px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.20);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
-
 .login-card h2 {
-    margin-bottom: 20px;
+    margin-bottom: 22px;
     color: #004080;
     font-size: 1.5rem;
+    font-weight: 600;
 }
-
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 16px;
 }
-
 .form-group label {
     display: block;
-    margin-bottom: 5px;
-    font-size: 0.9rem;
-    color: #666;
+    margin-bottom: 6px;
+    font-size: 0.95rem;
+    color: #444;
 }
-
 .form-group input {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     border: 1px solid #ddd;
     border-radius: 4px;
-    font-size: 1rem;
+    font-size: 1.05rem;
+    background: #f8fafd;
 }
-
 .form-options {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     font-size: 0.85rem;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 }
-
 .form-options a {
     color: #0066cc;
     text-decoration: none;
+    transition: text-decoration 0.2s;
 }
-
+.form-options a:hover {
+    text-decoration: underline;
+}
 .btn-primary {
     width: 100%;
     padding: 12px;
     background-color: #0066cc;
     border: none;
     color: white;
-    font-size: 1rem;
+    font-size: 1.13rem;
     font-weight: bold;
     border-radius: 4px;
     cursor: pointer;
+    margin-top: 3px;
+    transition: background-color 0.2s;
 }
-
 .btn-primary:hover {
     background-color: #0052a3;
 }
-
 .security-notice {
-    margin-top: 20px;
+    margin-top: 18px;
+    text-align: left;
+    color: #28a745;
+    font-size: 1.03rem;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-weight: 600;
+}
+
+/* Featured banking products */
+.features {
+    padding: 56px 0;
+    background: #eaf1fc;
+}
+.features-grid {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.feature-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
     text-align: center;
-    color: #28a745; /* Green for security */
+    padding: 36px 24px;
+    min-width: 220px;
+    max-width: 280px;
+}
+.feature-icon {
+    font-size: 2.5em;
+    margin-bottom: 16px;
+    display: block;
+}
+.feature-card h3 {
+    color: #004080;
+    margin-bottom: 15px;
+    font-size: 1.23rem;
+    font-weight: 600;
+}
+.feature-card p {
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Improved Trust Signal Badges */
+.trust-signals {
+    background: #fff;
+    border-top: 1px solid #dde5ed;
+    padding: 36px 0;
+}
+.trust-row {
+    display: flex;
+    gap: 38px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #0059b3 0%, #0073e6 100%);
+    box-shadow: 0 4px 16px rgba(0,64,128,0.14), 0 1.5px 3px #eeeeee inset;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 24px;
+    padding: 16px 28px;
+    font-size: 1.13em;
+    border: none;
+    transition: transform 0.18s, box-shadow 0.18s;
+    cursor: pointer;
+    outline: none;
+    min-width: 140px;
+    justify-content: center;
+    text-align: center;
+}
+.badge:hover, .badge:focus {
+    transform: scale(1.07);
+    box-shadow: 0 6px 24px rgba(0,64,128,0.21), 0 2px 6px #e0e7f5 inset;
+}
+.badge .icon {
+    font-size: 1.2em;
+    margin-right: 5px;
 }
 
 /* Footer */
 footer {
     background-color: #eee;
-    padding: 20px 0;
+    padding: 26px 0;
     text-align: center;
     color: #777;
-    font-size: 0.8rem;
+    font-size: 0.95rem;
+}
+footer a {
+    color: #0052a3;
+    text-decoration: none;
+    margin: 0 7px;
+}
+footer a:hover {
+    text-decoration: underline;
 }
