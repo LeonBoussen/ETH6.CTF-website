@@ -3,80 +3,800 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employee Panel</title>
+    <title>SecureBank - Employee Admin Panel</title>
     <style>
-      body {
-        font-family: Arial, sans-serif;
-      }
-      nav.navbar {
-        background: #183153;
-        color: #fff;
-        padding: 1em 0;
-      }
-      .logo {
-        font-weight: bold;
-        font-size: 1.4em;
-        margin-left: 1em;
-      }
-      .container {
-        width: 90%;
-        margin: 0 auto;
-      }
-      section.panel {
-        margin: 2em 0;
-        padding: 2em;
-        background: #f5f5f5;
-        border-radius: 8px;
-      }
-      footer {
-        background: #24406c;
-        color: #fff;
-        padding: 1em;
-        text-align: center;
-      }
-      dialog {
-        border: 1px solid #666;
-        border-radius: 6px;
-        padding: 2em 2.5em;
-        font-size: 1.1em;
-      }
-      dialog::backdrop {
-        background: rgba(0, 0, 0, 0.5);
-      }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f4f6f9;
+            color: #2c3e50;
+        }
+        
+        /* Top Navigation Bar */
+        .top-nav {
+            background: linear-gradient(135deg, #183153 0%, #24406c 100%);
+            color: #fff;
+            padding: 0 2em;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            font-weight: 700;
+            font-size: 1.6em;
+            letter-spacing: -0.5px;
+        }
+        
+        .logo-badge {
+            background: #3498db;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.7em;
+            font-weight: 600;
+        }
+        
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+        
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: background 0.3s;
+        }
+        
+        .nav-item:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        
+        .notification-badge {
+            background: #e74c3c;
+            color: #fff;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75em;
+            font-weight: bold;
+        }
+        
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #3498db;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 70px;
+            width: 260px;
+            height: calc(100vh - 70px);
+            background: #fff;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+            padding: 2em 0;
+            overflow-y: auto;
+        }
+        
+        .menu-section {
+            margin-bottom: 2em;
+        }
+        
+        .menu-title {
+            color: #95a5a6;
+            font-size: 0.75em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0 1.5em;
+            margin-bottom: 1em;
+        }
+        
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px 1.5em;
+            color: #2c3e50;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+        }
+        
+        .menu-item:hover {
+            background: #ecf0f1;
+            border-left-color: #3498db;
+        }
+        
+        .menu-item.active {
+            background: #e8f4fd;
+            border-left-color: #3498db;
+            color: #3498db;
+            font-weight: 600;
+        }
+        
+        .menu-icon {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Main Content */
+        .main-content {
+            margin-left: 260px;
+            padding: 2em;
+            min-height: calc(100vh - 70px);
+        }
+        
+        .page-header {
+            margin-bottom: 2em;
+        }
+        
+        .page-title {
+            font-size: 1.8em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.3em;
+        }
+        
+        .breadcrumb {
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5em;
+            margin-bottom: 2em;
+        }
+        
+        .stat-card {
+            background: #fff;
+            padding: 1.5em;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+        }
+        
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1em;
+        }
+        
+        .stat-title {
+            font-size: 0.85em;
+            color: #7f8c8d;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .stat-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3em;
+        }
+        
+        .stat-icon.blue { background: #e8f4fd; color: #3498db; }
+        .stat-icon.green { background: #e8f8f5; color: #27ae60; }
+        .stat-icon.orange { background: #fef5e7; color: #f39c12; }
+        .stat-icon.red { background: #fadbd8; color: #e74c3c; }
+        
+        .stat-value {
+            font-size: 2em;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 0.2em;
+        }
+        
+        .stat-change {
+            font-size: 0.85em;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .stat-change.positive { color: #27ae60; }
+        .stat-change.negative { color: #e74c3c; }
+        
+        /* Content Panels */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1.5em;
+            margin-bottom: 2em;
+        }
+        
+        .panel {
+            background: #fff;
+            padding: 1.5em;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5em;
+            padding-bottom: 1em;
+            border-bottom: 2px solid #ecf0f1;
+        }
+        
+        .panel-title {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .panel-action {
+            color: #3498db;
+            font-size: 0.9em;
+            cursor: pointer;
+            padding: 6px 12px;
+            border-radius: 6px;
+            transition: background 0.3s;
+        }
+        
+        .panel-action:hover {
+            background: #ecf0f1;
+        }
+        
+        /* Table */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .data-table thead {
+            background: #f8f9fa;
+        }
+        
+        .data-table th {
+            padding: 12px;
+            text-align: left;
+            font-size: 0.85em;
+            font-weight: 600;
+            color: #7f8c8d;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .data-table td {
+            padding: 15px 12px;
+            border-bottom: 1px solid #ecf0f1;
+            font-size: 0.95em;
+        }
+        
+        .data-table tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .status-badge {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 600;
+        }
+        
+        .status-badge.completed { background: #d5f4e6; color: #27ae60; }
+        .status-badge.pending { background: #fff3cd; color: #f39c12; }
+        .status-badge.failed { background: #fadbd8; color: #e74c3c; }
+        
+        /* Activity Feed */
+        .activity-item {
+            display: flex;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+        
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.1em;
+        }
+        
+        .activity-content {
+            flex: 1;
+        }
+        
+        .activity-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.3em;
+        }
+        
+        .activity-time {
+            font-size: 0.85em;
+            color: #95a5a6;
+        }
+        
+        /* Alert Box */
+        .alert-box {
+            background: #fff3cd;
+            border-left: 4px solid #f39c12;
+            padding: 1em 1.5em;
+            border-radius: 8px;
+            margin-bottom: 2em;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        
+        .alert-icon {
+            color: #f39c12;
+            font-size: 1.5em;
+        }
+        
+        .alert-content h3 {
+            margin-bottom: 0.5em;
+            color: #2c3e50;
+        }
+        
+        .alert-content p {
+            color: #7f8c8d;
+            line-height: 1.6;
+        }
+        
+        /* Dialog */
+        dialog {
+            border: none;
+            border-radius: 12px;
+            padding: 2.5em;
+            max-width: 500px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        
+        dialog::backdrop {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(3px);
+        }
+        
+        dialog h2 {
+            color: #27ae60;
+            margin-bottom: 1em;
+            font-size: 1.6em;
+        }
+        
+        dialog p {
+            background: #2c3e50;
+            color: #2ecc71;
+            padding: 1em;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1em;
+            margin: 1.5em 0;
+            word-break: break-all;
+        }
+        
+        dialog button {
+            background: #3498db;
+            color: #fff;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        dialog button:hover {
+            background: #2980b9;
+        }
+        
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 2em;
+            text-align: center;
+            margin-left: 260px;
+        }
     </style>
 </head>
 <body>
+    <!-- Flag Dialog -->
     <dialog id="helloPopup">
-        <h2>You got the flag!!!</h2>
+        <h2>🎯 You got the flag!!!</h2>
         <p>Bombo{flagring_of_3cfound25}</p>
         <button id="closePopup">Close</button>
     </dialog>
-    <nav class="navbar">
-      <div class="container">
-        <div class="logo">SecureBank</div>
-      </div>
-    </nav>
-    <section class="panel">
-        <div class="container">
-            <h1>Welcome to the Employee Panel</h1>
-            <p>The cryptographic network protocol used for secure remote login, strong authentication, and encrypted data communication over an unsecured network like the Internet, isnt that secured after all. <br>All users got access!</br>One junior admin Mr. john, half‑asleep and over‑caffeinated, checked the “allow password login” box and set all employee passwords to their favorite dessert so no one would forget: “brownie,” “donut,” and the truly elite “pancake123.” The next morning, a curious intern running a port scan noticed that Cupcake’s SSH door was wide open and, with a couple of guesses, unlocked every account without even trying.</br></p>
-        </div>
-    </section>
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 SecureBank Global. All rights reserved.</p>
-        </div>
-    </footer>
-    <script>
-      // Show dialog on page load
-      window.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('helloPopup').showModal();
-      });
 
-      // Close dialog
-      document.getElementById('closePopup').addEventListener('click', function() {
-        document.getElementById('helloPopup').close();
-      });
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <div class="logo-section">
+            <div class="logo">SecureBank</div>
+            <div class="logo-badge">ADMIN</div>
+        </div>
+        <div class="nav-right">
+            <div class="nav-item">
+                <span>🔍</span>
+            </div>
+            <div class="nav-item">
+                <span>🔔</span>
+                <div class="notification-badge">3</div>
+            </div>
+            <div class="user-profile">
+                <div class="user-avatar">JD</div>
+                <div>
+                    <div style="font-weight: 600;">John Doe</div>
+                    <div style="font-size: 0.8em; opacity: 0.8;">Administrator</div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="menu-section">
+            <div class="menu-title">Main Menu</div>
+            <div class="menu-item active">
+                <div class="menu-icon">📊</div>
+                <span>Dashboard</span>
+            </div>
+            <div class="menu-item">
+                <div class="menu-icon">👥</div>
+                <span>Customer Management</span>
+            </div>
+            <div class="menu-item">
+                <div class="menu-icon">💳</div>
+                <span>Accounts</span>
+            </div>
+            <div class="menu-item">
+                <div class="menu-icon">💸</div>
+                <span>Transactions</span>
+            </div>
+            <div class="menu-item">
+                <div class="menu-icon">📈</div>
+                <span>Analytics</span>
+            </div>
+        </div>
+        
+        <div class="menu-section">
+            <div class="menu-title">Services</div>
+            <div class="menu-item">
+                <div class="menu-icon">🔐</div>
+                <span>Security Center</span>
+            </div>
+            <div class="menu-item">
+                <div class="menu-icon">📋</div>
+                <span>Reports</span>
+            </div>
+            <div class="menu-item">
+                <div class="menu-icon">⚙️</div>
+                <span>System Settings</span>
+            </div>
+            <div class="menu-item">
+                <div class="menu-icon">🛡️</div>
+                <span>Compliance</span>
+            </div>
+        </div>
+        
+        <div class="menu-section">
+            <div class="menu-title">Support</div>
+            <div class="menu-item">
+                <div class="menu-icon">❓</div>
+                <span>Help Center</span>
+            </div>
+            <div class="menu-item">
+                <div class="menu-icon">🚪</div>
+                <span>Logout</span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="page-header">
+            <h1 class="page-title">Dashboard Overview</h1>
+            <div class="breadcrumb">Home / Dashboard</div>
+        </div>
+
+        <!-- Security Alert -->
+        <div class="alert-box">
+            <div class="alert-icon">⚠️</div>
+            <div class="alert-content">
+                <h3>Security Notice: SSH Configuration Vulnerability Detected</h3>
+                <p>The cryptographic network protocol used for secure remote login, strong authentication, and encrypted data communication over an unsecured network like the Internet, isn't that secured after all. All users got access! One junior admin Mr. john, half-asleep and over-caffeinated, checked the "allow password login" box and set all employee passwords to their favorite dessert so no one would forget: "brownie," "donut," and the truly elite "pancake123." The next morning, a curious intern running a port scan noticed that Cupcake's SSH door was wide open and, with a couple of guesses, unlocked every account without even trying.</p>
+            </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div>
+                        <div class="stat-title">Total Customers</div>
+                    </div>
+                    <div class="stat-icon blue">👥</div>
+                </div>
+                <div class="stat-value">24,567</div>
+                <div class="stat-change positive">
+                    <span>↑ 12.5%</span>
+                    <span style="color: #95a5a6;">vs last month</span>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div>
+                        <div class="stat-title">Total Transactions</div>
+                    </div>
+                    <div class="stat-icon green">💸</div>
+                </div>
+                <div class="stat-value">$1.2M</div>
+                <div class="stat-change positive">
+                    <span>↑ 8.3%</span>
+                    <span style="color: #95a5a6;">vs last month</span>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div>
+                        <div class="stat-title">Active Accounts</div>
+                    </div>
+                    <div class="stat-icon orange">💳</div>
+                </div>
+                <div class="stat-value">18,432</div>
+                <div class="stat-change positive">
+                    <span>↑ 5.7%</span>
+                    <span style="color: #95a5a6;">vs last month</span>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div>
+                        <div class="stat-title">Pending Requests</div>
+                    </div>
+                    <div class="stat-icon red">📋</div>
+                </div>
+                <div class="stat-value">247</div>
+                <div class="stat-change negative">
+                    <span>↑ 23.1%</span>
+                    <span style="color: #95a5a6;">vs last month</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Grid -->
+        <div class="content-grid">
+            <!-- Recent Transactions -->
+            <div class="panel">
+                <div class="panel-header">
+                    <h2 class="panel-title">Recent Transactions</h2>
+                    <div class="panel-action">View All →</div>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Transaction ID</th>
+                            <th>Customer</th>
+                            <th>Amount</th>
+                            <th>Type</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#TXN-8934</td>
+                            <td>Sarah Johnson</td>
+                            <td>$2,450.00</td>
+                            <td>Transfer</td>
+                            <td><span class="status-badge completed">Completed</span></td>
+                        </tr>
+                        <tr>
+                            <td>#TXN-8933</td>
+                            <td>Michael Chen</td>
+                            <td>$850.50</td>
+                            <td>Withdrawal</td>
+                            <td><span class="status-badge completed">Completed</span></td>
+                        </tr>
+                        <tr>
+                            <td>#TXN-8932</td>
+                            <td>Emily Davis</td>
+                            <td>$15,000.00</td>
+                            <td>Deposit</td>
+                            <td><span class="status-badge pending">Pending</span></td>
+                        </tr>
+                        <tr>
+                            <td>#TXN-8931</td>
+                            <td>James Wilson</td>
+                            <td>$320.75</td>
+                            <td>Payment</td>
+                            <td><span class="status-badge completed">Completed</span></td>
+                        </tr>
+                        <tr>
+                            <td>#TXN-8930</td>
+                            <td>Lisa Anderson</td>
+                            <td>$5,200.00</td>
+                            <td>Transfer</td>
+                            <td><span class="status-badge failed">Failed</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="panel">
+                <div class="panel-header">
+                    <h2 class="panel-title">Recent Activity</h2>
+                    <div class="panel-action">View All →</div>
+                </div>
+                <div>
+                    <div class="activity-item">
+                        <div class="activity-icon blue">📝</div>
+                        <div class="activity-content">
+                            <div class="activity-title">New account created</div>
+                            <div class="activity-time">2 minutes ago</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon green">✓</div>
+                        <div class="activity-content">
+                            <div class="activity-title">Transaction approved</div>
+                            <div class="activity-time">15 minutes ago</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon orange">⚠️</div>
+                        <div class="activity-content">
+                            <div class="activity-title">Security alert triggered</div>
+                            <div class="activity-time">1 hour ago</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon blue">👤</div>
+                        <div class="activity-content">
+                            <div class="activity-title">User profile updated</div>
+                            <div class="activity-time">3 hours ago</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon red">✕</div>
+                        <div class="activity-content">
+                            <div class="activity-title">Failed login attempt</div>
+                            <div class="activity-time">5 hours ago</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Customer Requests Table -->
+        <div class="panel">
+            <div class="panel-header">
+                <h2 class="panel-title">Pending Customer Requests</h2>
+                <div class="panel-action">Manage Requests →</div>
+            </div>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Request ID</th>
+                        <th>Customer Name</th>
+                        <th>Request Type</th>
+                        <th>Date Submitted</th>
+                        <th>Priority</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>#REQ-1847</td>
+                        <td>Robert Martinez</td>
+                        <td>Account Upgrade</td>
+                        <td>Nov 28, 2025</td>
+                        <td><span class="status-badge pending">Medium</span></td>
+                        <td><span class="status-badge pending">Under Review</span></td>
+                    </tr>
+                    <tr>
+                        <td>#REQ-1846</td>
+                        <td>Jennifer Lopez</td>
+                        <td>Card Replacement</td>
+                        <td>Nov 27, 2025</td>
+                        <td><span class="status-badge completed">Low</span></td>
+                        <td><span class="status-badge pending">Processing</span></td>
+                    </tr>
+                    <tr>
+                        <td>#REQ-1845</td>
+                        <td>David Thompson</td>
+                        <td>Loan Application</td>
+                        <td>Nov 27, 2025</td>
+                        <td><span class="status-badge failed">High</span></td>
+                        <td><span class="status-badge pending">Pending</span></td>
+                    </tr>
+                    <tr>
+                        <td>#REQ-1844</td>
+                        <td>Amanda White</td>
+                        <td>Dispute Resolution</td>
+                        <td>Nov 26, 2025</td>
+                        <td><span class="status-badge failed">High</span></td>
+                        <td><span class="status-badge completed">Resolved</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 SecureBank Global. All rights reserved. | Admin Panel v2.4.1</p>
+    </footer>
+
+    <script>
+        // Show flag dialog on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('helloPopup').showModal();
+        });
+
+        // Close dialog
+        document.getElementById('closePopup').addEventListener('click', function() {
+            document.getElementById('helloPopup').close();
+        });
     </script>
 </body>
 </html>
