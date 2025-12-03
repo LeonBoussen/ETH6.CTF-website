@@ -399,53 +399,86 @@
             color: #7f8c8d;
             line-height: 1.6;
         }
-        
-        /* Dialog */
+            
         dialog {
-            border: none;
-            border-radius: 12px;
-            padding: 2.5em;
-            max-width: 500px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            margin: 0;
+
+            /* Layout */
+            padding: 1.8em 2.2em;
+            min-width: 340px;
+            max-width: 420px;
+
+            /* Visuals */
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 18px;
+            background: rgba(15, 23, 42, 0.85);        /* dark translucent */
+            box-shadow: 0 24px 60px rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(18px);
+
+            /* Remove default dialog styles */
+            color: #e5f4ff;
         }
-        
-        dialog::backdrop {
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(3px);
-        }
-        
+
         dialog h2 {
-            color: #27ae60;
-            margin-bottom: 1em;
-            font-size: 1.6em;
+            margin-bottom: 0.6em;
+            font-size: 1.4em;
+            letter-spacing: 0.02em;
         }
-        
+
         dialog p {
-            background: #2c3e50;
-            color: #2ecc71;
-            padding: 1em;
-            border-radius: 8px;
-            font-family: 'Courier New', monospace;
-            font-size: 1.1em;
-            margin: 1.5em 0;
-            word-break: break-all;
+            margin: 1em 0 1.5em;
+            border-radius: 10px;
+            padding: 0.9em 1.1em;
+            background: rgba(15, 23, 42, 0.9);
+            color: #a5f3fc;
+            font-family: "JetBrains Mono", "Fira Code", monospace;
+            font-size: 0.95em;
         }
-        
+
         dialog button {
-            background: #3498db;
-            color: #fff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+
             border: none;
-            padding: 12px 30px;
-            border-radius: 8px;
-            font-size: 1em;
+            border-radius: 999px;
+            padding: 0.6em 1.4em;
+
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: #f9fafb;
             font-weight: 600;
+            font-size: 0.95em;
             cursor: pointer;
-            transition: background 0.3s;
+
+            box-shadow: 0 10px 25px rgba(22, 163, 74, 0.5);
+            transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
         }
-        
+
         dialog button:hover {
-            background: #2980b9;
+            transform: translateY(-1px);
+            box-shadow: 0 16px 35px rgba(22, 163, 74, 0.55);
+            filter: brightness(1.05);
         }
+
+        dialog button:active {
+            transform: translateY(0);
+            box-shadow: 0 8px 18px rgba(22, 163, 74, 0.45);
+            filter: brightness(0.97);
+        }
+
+        /* Optional: nicer backdrop */
+        dialog::backdrop {
+            background: radial-gradient(circle at top, rgba(56, 189, 248, 0.25), transparent 55%),
+                        radial-gradient(circle at bottom, rgba(34, 197, 94, 0.25), transparent 55%),
+                        rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(4px);
+        }
+
         
         /* Footer */
         footer {

@@ -55,4 +55,4 @@ def panel():
 # Run the application directly
 if __name__ == '__main__':
     # debug=True allows for auto-reloading when you change code
-    app.run(debug=True)
+    app.run(port=80,debug=True)
